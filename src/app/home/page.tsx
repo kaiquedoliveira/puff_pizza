@@ -1,5 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "./style"
+import { styles } from "@/app/home/style"
+import { Link } from "expo-router";
 
 export default function Index(){
     const MENU = [
@@ -13,21 +14,21 @@ export default function Index(){
         {
             id: 2,
             name: "Pizza Calabresa com Catupry",
-            description: "Uma pizza de calabresa com catupiry é composta por uma massa saborosa, molho de tomate, queijo mussarela, fatias de linguiça calabresa levemente defumada e cremosa cobertura de catupiry. Uma combinação irresistível de sabores!",
+            description: "Uma pizza de calabresa com catupiry , molho de tomate, queijo mussarela, fatias de linguiça calabresa levemente defumada e cremosa cobertura de catupir",
             price: 45.90,
             image: require("@/assets/images/pizzacat.png")
         },
         {
             id: 3,
             name: "Pizza Brocolis",
-            description: "Uma pizza de brócolis é composta por uma base de massa macia, molho de tomate, queijo mussarela derretido e pedaços de brócolis frescos e levemente temperados. Para um toque extra, pode incluir alho ou requeijão, criando uma combinação leve e saborosa! ",
+            description: "Uma pizza de brócolis é composta por uma base de massa macia, molho de tomate, queijo mussarela derretido e pedaços de brócolis frescos e levemente temperados",
             price: 30.00,
             image: require("@/assets/images/pizzabroc.jpg")
         },
         {
             id: 4,
             name: "Pizza Frango com Catupiry",
-            description: "Uma pizza de frango com catupiry combina uma massa macia, molho de tomate, queijo mussarela, pedaços suculentos de frango desfiado bem temperado e uma generosa camada de catupiry cremoso. Uma delícia que agrada muitos paladares!",
+            description: "Uma pizza de frango com catupiry combina uma massa macia, molho de tomate, queijo mussarela, pedaços suculentos de frango desfiado bem temperado e uma generosa camada de catupiry cremoso",
             price: 39.90,
             image: require("@/assets/images/pizzafran.jpg")
         }
@@ -36,7 +37,7 @@ export default function Index(){
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image style={styles.headerImage} source={require("@/assets/images/logo.png")}/>
+                <Image style={styles.headerImage} source={require("@/assets/images/logo-pizza.png")}/>
             </View>
            
             <View style={styles.tabs}>
@@ -50,15 +51,18 @@ export default function Index(){
             <ScrollView style={styles.menuList}>
             {
                 MENU.map((item) => (
+                    <Link href={"/produto/page"} asChild>
                     <TouchableOpacity style={styles.menuItem}>
-                          <Image style={styles.imgItem} source={item.image}/>
+                          <Image style={styles.itemImage} source={item.image}/>
                         <View style={styles.menuContent}>
                             <Text style={styles.itemName}>{item.name}</Text>
                             <Text style={styles.itemDescription}>{item.description}</Text>
                             <Text style={styles.itemPrice}>{item.price.toFixed(2)}</Text>
+                            
                         </View>
                       
                     </TouchableOpacity>
+                    </Link>
                 ))
             }
             </ScrollView>
